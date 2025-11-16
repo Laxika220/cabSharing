@@ -7,7 +7,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.cabsharing.ui.screens.CreateRideScreen
 import com.example.cabsharing.ui.screens.LoginScreen
 import com.example.cabsharing.ui.screens.SwipeScreen
-import com.example.cabsharing.ui.theme.LoginScreen
 
 @Composable
 fun AppNavigation() {

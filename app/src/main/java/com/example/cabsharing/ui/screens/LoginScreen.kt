@@ -1,4 +1,4 @@
-package com.example.cabsharing.ui.theme
+package com.example.cabsharing.ui.screens
 
 
 

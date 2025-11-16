@@ -57,6 +57,10 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation(libs.androidx.navigation.compose)
 
+    implementation("androidx.compose.material:material-icons-core:1.6.0")
+    implementation("androidx.compose.material:material-icons-extended:1.6.0")
+    // Icons
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
