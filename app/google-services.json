@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1000192937092",
+    "project_id": "cabsharing-8215c",
+    "storage_bucket": "cabsharing-8215c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000192937092:android:6b76ab4a5e25208325c6d1",
+        "android_client_info": {
+          "package_name": "com.example.cabsharing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRw-Q2IE5ZYpn3sbRket9_GA_Dj8Ilx3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
