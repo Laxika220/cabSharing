@@ -120,7 +120,7 @@ fun CreateRideScreen(userId: String, onRideCreated: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .menuAnchor(),
-                shape = RoundedCornerShape(12.dp)
+                shape = RoundedCornerShape(12.dp )
             )
 
             ExposedDropdownMenu(
