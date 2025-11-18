@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun LoginScreen(onLoginSuccess: (String) -> Unit) {
     var name by remember { mutableStateOf("") }
+    var emailID by remember { mutableStateOf("") }
     var showContent by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
@@ -46,7 +47,7 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
                 )
 
                 Text(
-                    text = "CabSharing",
+                    text = "Cab Share",
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -63,6 +64,15 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
                     value = name,
                     onValueChange = { name = it },
                     label = { Text("Your Name") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true,
+                    shape = RoundedCornerShape(12.dp)
+                )
+
+                OutlinedTextField(
+                    value = emailID,
+                    onValueChange = { emailID = it },
+                    label = { Text("College email ID") },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
                     shape = RoundedCornerShape(12.dp)

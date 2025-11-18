@@ -1,6 +1,7 @@
 package com.example.cabsharing
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -21,7 +22,7 @@ fun AppNavigation() {
             })
         }
 
-        composable("swipe/{userId}") { backStackEntry ->
+        composable("swipe/{userId}") { backStackEntry: NavBackStackEntry ->
             val userId = backStackEntry.arguments?.getString("userId") ?: ""
             SwipeScreen(
                 userId = userId,
@@ -31,7 +32,7 @@ fun AppNavigation() {
             )
         }
 
-        composable("create/{userId}") { backStackEntry ->
+        composable("create/{userId}") { backStackEntry: NavBackStackEntry ->
             val userId = backStackEntry.arguments?.getString("userId") ?: ""
             CreateRideScreen(
                 userId = userId,
@@ -42,4 +43,3 @@ fun AppNavigation() {
         }
     }
 }
-
