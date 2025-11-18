@@ -47,7 +47,7 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
                 )
 
                 Text(
-                    text = " Cab Share ",
+                    text = " Welcome to Cab Share ",
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold
                 )
