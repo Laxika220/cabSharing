@@ -253,8 +253,7 @@ fun DraggableCard(
 
 @Composable
 fun RideCardUI(ride: RideCard, modifier: Modifier) {
-    Card(
-        modifier = modifier.fillMaxSize(),
+    Card(modifier = modifier.fillMaxSize(),
         shape = RoundedCornerShape(28.dp),
         elevation = CardDefaults.cardElevation(12.dp),
         colors = CardDefaults.cardColors(
