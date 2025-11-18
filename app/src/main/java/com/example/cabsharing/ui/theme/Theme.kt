@@ -10,27 +10,42 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = IndigoPrimaryDark,
+    onPrimary = MidnightNavyDark,
+    primaryContainer = LavenderSurfaceDark,
+    onPrimaryContainer = Color.White,
+    secondary = AquaAccentDark,
+    onSecondary = MidnightNavyDark,
+    tertiary = PeachHighlightDark,
+    onTertiary = MidnightNavyDark,
+    background = MidnightNavyDark,
+    onBackground = Color.White,
+    surface = LavenderSurfaceDark,
+    onSurface = Color.White,
+    surfaceVariant = MidnightNavyDark,
+    onSurfaceVariant = SlateGreyDark,
+    outline = SlateGreyDark
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
+    primary = IndigoPrimary,
     onPrimary = Color.White,
+    primaryContainer = LavenderSurface,
+    onPrimaryContainer = MidnightNavy,
+    secondary = AquaAccent,
     onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    tertiary = PeachHighlight,
+    onTertiary = MidnightNavy,
+    background = MistSurface,
+    onBackground = MidnightNavy,
+    surface = Color.White,
+    onSurface = MidnightNavy,
+    surfaceVariant = LavenderSurface,
+    onSurfaceVariant = SlateGrey,
+    outline = SlateGrey
 )
 
 @Composable
