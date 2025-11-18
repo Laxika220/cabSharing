@@ -139,7 +139,7 @@ fun CreateRideScreen(userId: String, onRideCreated: () -> Unit) {
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier =  Modifier.height(16.dp))
 
         Button(
             onClick = {
