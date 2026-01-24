@@ -56,11 +56,31 @@ fun SwipeScreen(userId: String, onCreateRide: () -> Unit) {
     var currentIndex by remember { mutableStateOf(0) }
     var isLoading by remember { mutableStateOf(true) }
     var showMatchAnimation by remember { mutableStateOf(false) }
+    var userRides by remember { mutableStateOf<List<RideCard>>(emptyList()) }
 
     LaunchedEffect(Unit) {
-        repository.getRides(userId).onSuccess {
-            rides = it
-            isLoading = false
+        // First, get the user's own rides to find matches
+        repository.getUserRides(userId).onSuccess { myRides ->
+            userRides = myRides
+            if (myRides.isNotEmpty()) {
+                // For simplicity, match based on the most recent ride created by the user
+                repository.getMatchingRides(userId, myRides.first()).onSuccess { matchedRides ->
+                    rides = matchedRides
+                    isLoading = false
+                }
+            } else {
+                // If no user rides, show all available rides as a fallback
+                repository.getRides(userId).onSuccess { allRides ->
+                    rides = allRides
+                    isLoading = false
+                }
+            }
+        }.onFailure {
+            // Fallback to all rides on error
+            repository.getRides(userId).onSuccess { allRides ->
+                rides = allRides
+                isLoading = false
+            }
         }
     }
 
@@ -86,6 +106,16 @@ fun SwipeScreen(userId: String, onCreateRide: () -> Unit) {
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 SwipeScreenTopBar(onCreateRide = onCreateRide)
+
+                if (userRides.isNotEmpty() && rides.isNotEmpty()) {
+                    Text(
+                        text = "Matches for your ride to ${userRides.first().to}",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.padding(horizontal = 8.dp)
+                    )
+                }
 
                 SwipeableCards(
                     rides = rides,
@@ -461,6 +491,7 @@ private fun RideTimeline(ride: RideCard) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         TimelineRow(label = "From", value = ride.from)
         TimelineRow(label = "To", value = ride.to)
+        TimelineRow(label = "Date", value = ride.departureDate)
         TimelineRow(label = "Time", value = ride.departureTime)
         TimelineRow(label = "Meeting point", value = ride.venue)
     }

@@ -45,6 +45,43 @@ class FirebaseRepository {
         }
     }
 
+    suspend fun getUserRides(userId: String): Result<List<RideCard>> {
+        return try {
+            val snapshot: QuerySnapshot = ridesCollection
+                .whereEqualTo("userId", userId)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .get()
+                .await<QuerySnapshot>()
+
+            val rides = snapshot.documents.mapNotNull { doc: DocumentSnapshot ->
+                doc.toObject(RideCard::class.java)?.copy(id = doc.id)
+            }
+            Result.success(rides)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun getMatchingRides(currentUserId: String, userRide: RideCard): Result<List<RideCard>> {
+        return try {
+            // Match by date and destination
+            val snapshot: QuerySnapshot = ridesCollection
+                .whereEqualTo("departureDate", userRide.departureDate)
+                .whereEqualTo("to", userRide.to)
+                .whereGreaterThan("seatsAvailable", 0)
+                .get()
+                .await<QuerySnapshot>()
+
+            val rides = snapshot.documents.mapNotNull { doc: DocumentSnapshot ->
+                doc.toObject(RideCard::class.java)?.copy(id = doc.id)
+            }.filter { it.userId != currentUserId && it.from == userRide.from }
+
+            Result.success(rides)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     suspend fun createMatch(match: Match, rideId: String): Result<Unit> {
         return try {
             // return a concrete Boolean so await() can infer the Task type
