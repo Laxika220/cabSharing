@@ -11,6 +11,7 @@ data class RideCard(
     val userName: String = "",              // Creator's name
     val from: String = "",                  // Starting location
     val to: String = "",                    // Destination
+    val departureDate: String = "",         // Date of departure (e.g., "2026-01-25")
     val departureTime: String = "",         // Time of departure (e.g., "9:00 AM")
     val venue: String = "",                 // Meeting point
     val seatsAvailable: Int = 1,            // Number of available seats

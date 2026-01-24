@@ -26,6 +26,7 @@ fun CreateRideScreen(userId: String, onRideCreated: () -> Unit) {
 
     var from by remember { mutableStateOf("") }
     var to by remember { mutableStateOf("") }
+    var departureDate by remember { mutableStateOf("") }
     var departureTime by remember { mutableStateOf("") }
     var venue by remember { mutableStateOf("") }
     var seats by remember { mutableStateOf("1") }
@@ -72,6 +73,16 @@ fun CreateRideScreen(userId: String, onRideCreated: () -> Unit) {
             onValueChange = { to = it },
             label = { Text("To") },
             placeholder = { Text("Pune Station") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            shape = RoundedCornerShape(12.dp)
+        )
+
+        OutlinedTextField(
+            value = departureDate,
+            onValueChange = { departureDate = it },
+            label = { Text("Departure Date") },
+            placeholder = { Text("2026-01-25") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
             shape = RoundedCornerShape(12.dp)
@@ -150,6 +161,7 @@ fun CreateRideScreen(userId: String, onRideCreated: () -> Unit) {
                         userName = userId,
                         from = from,
                         to = to,
+                        departureDate = departureDate,
                         departureTime = departureTime,
                         venue = venue,
                         seatsAvailable = seats.toIntOrNull() ?: 1,
@@ -168,7 +180,7 @@ fun CreateRideScreen(userId: String, onRideCreated: () -> Unit) {
                 .fillMaxWidth()
                 .height(56.dp),
             enabled = from.isNotBlank() && to.isNotBlank() &&
-                    departureTime.isNotBlank() && venue.isNotBlank() && !isCreating,
+                    departureDate.isNotBlank() && departureTime.isNotBlank() && venue.isNotBlank() && !isCreating,
             shape = RoundedCornerShape(12.dp)
         ) {
             if (isCreating) {
